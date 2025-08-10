@@ -1,5 +1,5 @@
 // Skills.jsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const SkillsSection = styled.section`
@@ -18,12 +18,12 @@ const SkillsTitle = styled.h2`
   font-size: 24px;
   margin-bottom: 20px;
   font-weight: 700;
-  color: #000;
-  text-shadow: 1px 1px 2px hsla(0, 0.00%, 0.00%, 0.15);
+  color: hsl(0, 0%, 0%);
+  text-shadow: 1px 1px 2px hsla(0, 0%, 0%, 0.15);
 `;
 
 const SkillsAccent = styled.span`
-  color:hsl(258, 88.60%, 72.50%);
+  color: hsl(258, 88.6%, 72.5%);
 `;
 
 const SkillsList = styled.ul`
@@ -35,13 +35,13 @@ const SkillsList = styled.ul`
 const SkillsItem = styled.li`
   display: flex;
   align-items: center;
-  background: #fff;
+  background: hsl(0, 0%, 100%);
   padding: 12px 15px;
   border-radius: 12px;
   margin-bottom: 12px;
   font-size: 16px;
-  color:hsl(0, 0.00%, 5.90%); 
-  box-shadow: inset 2px 2px 4px hsla(0, 0.00%, 0.00%, 0.35);
+  color: hsl(0, 0%, 5.9%);
+  box-shadow: inset 2px 2px 4px hsla(0, 0%, 0%, 0.35);
   transition-property: opacity, transform;
   transition-timing-function: ease;
   -webkit-backface-visibility: hidden;
@@ -63,16 +63,16 @@ const SkillsItem = styled.li`
 
   &:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: inset 2px 2px 4px hsla(0, 0.00%, 0.00%, 0.35);
-    background: hsl(249, 100.00%, 98.60%);
-    cursor-pointer;
+    box-shadow: inset 2px 2px 4px hsla(0, 0%, 0%, 0.35);
+    background: hsl(249, 100%, 98.6%);
+    cursor: pointer;
   }
 `;
 
 const SkillsDot = styled.span`
   width: 8px;
   height: 8px;
-  background:hsl(258, 88.60%, 72.50%);
+  background: hsl(258, 88.6%, 72.5%);
   border-radius: 50%;
   margin-right: 10px;
   flex-shrink: 0;
@@ -163,3 +163,4 @@ const Skills = () => {
 };
 
 export default Skills;
+

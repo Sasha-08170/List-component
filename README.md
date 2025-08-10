@@ -1,12 +1,32 @@
-# React + Vite
+# 📜 Skills.jsx — Анимированный список навыков
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Skills.jsx** — это React-компонент, который отображает список **Hard** и **Soft skills** с плавной анимацией появления при прокрутке страницы.  
+Каждый элемент списка появляется с задержкой, создавая эффект последовательного появления.  
+Используется **IntersectionObserver** для отслеживания попадания элементов в область видимости.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Возможности
+- 📌 **Две колонки**: Hard skills и Soft skills.
+- 🎨 **Полная стилизация** через styled-components.
+- 🖌 **Все цвета** в формате HSL для гибкой настройки.
+- 🪄 **Анимация появления** при прокрутке.
+- 🖱 **Hover-эффект** с изменением фона и лёгким масштабированием.
+- 🔄 **Параметрическая задержка** появления элементов.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📂 Структура
+- **SkillsSection** — контейнер для двух колонок.
+- **SkillsColumn** — отдельная колонка.
+- **SkillsTitle** — заголовок с акцентным цветом.
+- **SkillsList** — список навыков.
+- **SkillsItem** — отдельный навык с анимацией.
+- **SkillsDot** — цветная точка перед текстом.
+
+---
+
+## ⚙️ Используемые технологии
+- **React**
+- **styled-components**
+- **IntersectionObserver API**
