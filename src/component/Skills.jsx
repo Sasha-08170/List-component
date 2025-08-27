@@ -1,17 +1,19 @@
+// Импорт React и хуков, styled-components для стилизации и keyframes для анимации
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-// Анимация появления окна
+// Анимация появления модального окна
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(40px);}
   to { opacity: 1; transform: translateY(0);}
 `;
 
-// Стилизация блока
+// Стилизация секции со списком вакансий
 const VacancySection = styled.section`
   padding: 30px 0;
 `;
 
+// Стилизация списка вакансий (вертикальный список, выравнивание вправо)
 const VacancyList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -22,6 +24,7 @@ const VacancyList = styled.ul`
   align-items: flex-end;
 `;
 
+// Стилизация отдельной карточки вакансии
 const VacancyItem = styled.li`
   background: #fff;
   border-radius: 12px;
@@ -34,12 +37,14 @@ const VacancyItem = styled.li`
   align-items: center;
 `;
 
+// Стилизация названия вакансии
 const VacancyTitle = styled.span`
   font-size: 18px;
   color: #232323;
   font-weight: 500;
 `;
 
+// Стилизация кнопки-тега вакансии (открывает модальное окно)
 const VacancyTag = styled.button`
   display: inline-flex;
   align-items: center;
@@ -74,7 +79,7 @@ const VacancyTag = styled.button`
   }
 `;
 
-// Модальное окно
+// Стилизация оверлея модального окна
 const ModalOverlay = styled.div`
   position: fixed;
   z-index: 1000;
@@ -87,6 +92,7 @@ const ModalOverlay = styled.div`
   padding: 40px 0;
 `;
 
+// Стилизация самого модального окна с анимацией
 const ModalWindow = styled.div`
   background: #fff;
   border-radius: 0 0 0 0;
@@ -104,6 +110,7 @@ const ModalWindow = styled.div`
   }
 `;
 
+// Кнопка закрытия модального окна
 const ModalClose = styled.button`
   position: absolute;
   top: 32px;
@@ -119,6 +126,7 @@ const ModalClose = styled.button`
   }
 `;
 
+// Стилизация заголовка модального окна
 const ModalTitle = styled.h2`
   font-size: 36px;
   font-weight: 700;
@@ -127,6 +135,7 @@ const ModalTitle = styled.h2`
   line-height: 1.2;
 `;
 
+// Контейнер для двух колонок в модальном окне
 const ModalRow = styled.div`
   display: flex;
   gap: 48px;
@@ -137,11 +146,13 @@ const ModalRow = styled.div`
   }
 `;
 
+// Колонка в модальном окне
 const ModalCol = styled.div`
   flex: 1;
   min-width: 0;
 `;
 
+// Подзаголовок в модальном окне
 const ModalSubtitle = styled.div`
   font-size: 20px;
   font-weight: 700;
@@ -150,6 +161,7 @@ const ModalSubtitle = styled.div`
   margin-top: 0;
 `;
 
+// Обычный текст в модальном окне
 const ModalText = styled.p`
   font-size: 18px;
   color: #2a314b;
@@ -157,12 +169,14 @@ const ModalText = styled.p`
   line-height: 1.6;
 `;
 
+// Список обязанностей в модальном окне
 const ModalList = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
 `;
 
+// Элемент списка обязанностей с кастомным кружком
 const ModalListItem = styled.li`
   display: flex;
   align-items: flex-start;
@@ -185,7 +199,7 @@ const ModalListItem = styled.li`
   }
 `;
 
-// Данные вакансий (только один список справа)
+// Массив вакансий (только одна вакансия для примера)
 const vacancies = [
   {
     title: 'Викладач для індивідуальних занять',
@@ -200,7 +214,9 @@ const vacancies = [
   },
 ];
 
+// Компонент модального окна
 const Modal = ({ open, onClose, vacancy }) => {
+  // Закрытие по Esc
   React.useEffect(() => {
     if (!open) return;
     const onEsc = (e) => {
@@ -212,12 +228,17 @@ const Modal = ({ open, onClose, vacancy }) => {
 
   if (!open) return null;
   return (
+    // Оверлей, закрытие по клику вне окна
     <ModalOverlay className="modal" onClick={onClose}>
+      {/* Само окно, остановка всплытия клика */}
       <ModalWindow className="modal__window" onClick={(e) => e.stopPropagation()} tabIndex={-1}>
+        {/* Кнопка закрытия */}
         <ModalClose className="modal__close" aria-label="Закрити" onClick={onClose}>
           &times;
         </ModalClose>
+        {/* Заголовок */}
         <ModalTitle className="modal__title">{vacancy.title}</ModalTitle>
+        {/* Две колонки: описание и список */}
         <ModalRow>
           <ModalCol>
             <ModalSubtitle>Про вакансію</ModalSubtitle>
@@ -236,7 +257,9 @@ const Modal = ({ open, onClose, vacancy }) => {
   );
 };
 
+// Основной компонент списка вакансий
 const Vacancies = () => {
+  // Состояние для выбранной вакансии (открытие модального окна)
   const [modalVacancy, setModalVacancy] = useState(null);
 
   return (
@@ -245,6 +268,7 @@ const Vacancies = () => {
         {vacancies.map((vac, idx) => (
           <VacancyItem className="vacancy__item" key={idx}>
             <VacancyTitle className="vacancy__title">{vac.title}</VacancyTitle>
+            {/* Кнопка для открытия модального окна */}
             <VacancyTag
               className={`vacancy__tag vacancy__tag--${vac.type}`}
               type={vac.type}
@@ -258,6 +282,7 @@ const Vacancies = () => {
           </VacancyItem>
         ))}
       </VacancyList>
+      {/* Модальное окно, если выбрана вакансия */}
       <Modal
         open={!!modalVacancy}
         onClose={() => setModalVacancy(null)}
